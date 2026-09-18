@@ -40,7 +40,7 @@ cat <<EOF > $OUTPUT_FILE
 EOF
 
 # Scan Network & append to HTML
-TARGET="192.168.120" # Bdal had l-IP b-subnet dyalk ila kan khtalf
+TARGET=$(ip route | grep default | awk '{print $3}' | cut -d. -f1-3)
 
 for ip in {1..20}; do  # Drna ghir 1..20 f-l-awwal bach ykoon l-scan sri3
     ping -c 1 -W 1 $TARGET.$ip > /dev/null 2>&1
